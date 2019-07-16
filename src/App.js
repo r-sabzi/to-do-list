@@ -15,28 +15,33 @@ class App extends Component {
 
   handleChange = e => {
     this.setState({
-      item:e.target.value
-    })
+      item: e.target.value
+    });
   };
   handleSubmit = e => {
-    e.preventDefault()
+    e.preventDefault();
     const newItem = {
       id: this.state.id,
-      title:this.state.item
-    }
-    const updatedItems = [...this.state.items, newItem]
+      title: this.state.item
+    };
+    const updatedItems = [...this.state.items, newItem];
     this.setState({
       items: updatedItems,
-      item: '',
+      item: "",
       id: uuid(),
-      editItem:false      
-    })
+      editItem: false
+    });
   };
   clearList = e => {
-    console.log("clearList");
+    this.setState({
+      items: []
+    });
   };
   handleDelete = id => {
-    console.log("handleDelete");
+    const filteredItems = this.state.items.filter(item => item.id !== id);
+    this.setState({
+      items: filteredItems
+    });
   };
   handleEdit = id => {
     console.log("handleEdit");
